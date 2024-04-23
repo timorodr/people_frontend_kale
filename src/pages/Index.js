@@ -1,11 +1,20 @@
-import { Link, useLoaderData, Form } from "react-router-dom";
+import { Link, useLoaderData, Form, useNavigate } from "react-router-dom";
 
 function Index(props) {
   // GET THE DATA FROM OUR LOADER
   const people = useLoaderData();
+  const navigate = useNavigate()
 
   return (
     <div>
+      <button onClick={() => {
+        //remove the token
+        localStorage.removeItem('token')
+        // go back to the / route
+        navigate('/')
+      }}>
+        Logout
+      </button>
         <h2>Create a Person</h2>
         <Form action="/create" method="post">
             <input type="text" name="name" placeholder="person's name"/>
